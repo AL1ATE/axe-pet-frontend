@@ -1,4 +1,4 @@
-import { commonContainer } from '../layout';
+import { commonContainer, glassCardBase } from '../layout';
 
 export const statsContainer = {
   ...commonContainer,
@@ -10,8 +10,8 @@ export const statsContainer = {
 
 export const statsLeftCard = (theme) => ({
   flex: 1,
-  backgroundColor: theme.palette.background.paper,
-  borderRadius: theme.shape.borderRadius,
+  ...glassCardBase,
+  borderRadius: theme.shape.borderRadius * 1.5,
   py: { xs: 1, sm: 1.5, md: 2, lg: 2.5 },
   px: { xs: 0.8, sm: 1, md: 1.5, lg: 2 },
   display: 'flex',
@@ -23,8 +23,8 @@ export const statsLeftCard = (theme) => ({
 
 export const statsRightCard = (theme) => ({
   flex: 2,
-  backgroundColor: theme.palette.background.paper,
-  borderRadius: theme.shape.borderRadius,
+  ...glassCardBase,
+  borderRadius: theme.shape.borderRadius * 1.5,
   py: { xs: 1, sm: 1.5, md: 2, lg: 2.5 },
   px: { xs: 0.8, sm: 1, md: 1.5, lg: 2 },
   display: 'flex',

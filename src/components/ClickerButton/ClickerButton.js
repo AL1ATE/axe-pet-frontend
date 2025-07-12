@@ -4,7 +4,7 @@ import { clickerButton } from '../../styles/components/ClickerButton.styles';
 function ClickerButton() {
   return (
     <Box sx={{ px: 2 }}>
-      <Button variant="contained" fullWidth sx={clickerButton}>
+      <Button fullWidth sx={clickerButton}>
         Happy Axie
       </Button>
     </Box>

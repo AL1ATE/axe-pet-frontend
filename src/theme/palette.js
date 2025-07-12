@@ -1,15 +1,15 @@
 const palette = {
   mode: 'dark',
   background: {
-    default: '#121212',
-    paper: '#1e1e1e',
+    default: 'transparent',
+    paper: 'rgba(30,30,30,0.85)', 
   },
   text: {
     primary: '#ffffff',
     secondary: '#aaaaaa',
   },
   primary: {
-    main: '#ff8c00',
+    main: '#00B4FF',
     contrastText: '#ffffff',
   },
 };

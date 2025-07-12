@@ -1,8 +1,13 @@
-import { Button, Stack, Box, Typography } from '@mui/material';
+import { Stack, Box, Typography } from '@mui/material';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import LoginIcon from '@mui/icons-material/Login';
-import { questsContainer, getQuestButtonStyle, questIconStyle, questLabelStyle } from '../../styles/components/QuestsBar.styles';
+import {
+  questsContainer,
+  getQuestCardStyle,
+  questIconStyle,
+  questLabelStyle
+} from '../../styles/components/QuestsBar.styles';
 
 function QuestsBar() {
   const quests = [
@@ -14,12 +19,26 @@ function QuestsBar() {
   return (
     <Stack direction="row" justifyContent="space-between" spacing={1} sx={questsContainer}>
       {quests.map((item, index) => (
-        <Button key={index} sx={(theme) => getQuestButtonStyle(theme, item.completed)}>
+        <Box
+          key={index}
+          role="button"
+          tabIndex={0}
+          sx={(theme) => getQuestCardStyle(theme, item.completed)}
+          onClick={() => {
+            // handle quest click
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              // handle keyboard click
+              e.preventDefault();
+            }
+          }}
+        >
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {item.icon}
             <Typography sx={questLabelStyle}>{item.label}</Typography>
           </Box>
-        </Button>
+        </Box>
       ))}
     </Stack>
   );
