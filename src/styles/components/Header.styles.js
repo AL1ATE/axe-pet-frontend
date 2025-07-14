@@ -25,7 +25,7 @@ export const avatarStyle = (theme) => ({
   height: { xs: 28, sm: 32, md: 36 },
   bgcolor: 'primary.main',
   fontSize: { xs: 14, sm: 16 },
-  borderRadius: theme.shape.borderRadius,
+  borderRadius: 10,
 });
 
 export const userNameStyle = {
