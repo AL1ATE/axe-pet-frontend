@@ -1,4 +1,6 @@
+
 import { commonContainer, glassCardBase } from '../layout';
+import { rarityGlowMap, glowPulseAnimationName } from '../../layout/Glow';
 
 export const avatarOuterBox = {
   ...commonContainer,
@@ -16,34 +18,16 @@ export const avatarMedia = {
   borderRadius: 'inherit',
 };
 
-/**
- * Карта цветов свечения по редкости
- */
-export const rarityGlowMap = {
-  common: 'rgba(255,255,255,0.08)',
-  rare: 'rgba(0,150,255,0.4)',
-  epic: 'rgba(155, 89, 182, 0.5)',
-  legendary: 'rgba(255, 215, 0, 0.6)',
-};
-
-/**
- * Динамический стиль контейнера для media
- */
 export const getAvatarInnerBox = (rarity, theme) => {
   const glow = rarityGlowMap[rarity] || rarityGlowMap.common;
 
   return {
+    ...glassCardBase,
     width: '100%',
-    maxWidth: {
-      xs: 400,
-      sm: 450,
-      md: 500,
-      lg: 550,
-    },
+    maxWidth: { xs: 400, sm: 450, md: 500, lg: 550 },
     aspectRatio: '1',
     borderRadius: 8,
     overflow: 'hidden',
-    ...glassCardBase,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -52,10 +36,11 @@ export const getAvatarInnerBox = (rarity, theme) => {
     border: `2px solid ${glow}`,
     transition: 'all 0.3s ease',
     ...(rarity === 'legendary' && {
-      animation: 'glowPulse 3s infinite ease-in-out',
+      animation: `${glowPulseAnimationName} 5s infinite ease-in-out`,
     }),
   };
 };
+
 
 /**
  * Стиль бейджа с надписью редкости
@@ -81,22 +66,3 @@ export const rarityLabelStyle = (theme, rarity) => ({
   letterSpacing: 1,
   textAlign: 'center',
 });
-
-export const glowPulseKeyframes = `
-@keyframes glowPulse {
-  0%   { box-shadow: 0 0 16px rgba(255, 215, 0, 0.2); }
-  8%   { box-shadow: 0 0 17px rgba(255, 215, 0, 0.23); }
-  16%  { box-shadow: 0 0 18px rgba(255, 215, 0, 0.26); }
-  24%  { box-shadow: 0 0 19px rgba(255, 215, 0, 0.29); }
-  32%  { box-shadow: 0 0 20px rgba(255, 215, 0, 0.32); }
-  40%  { box-shadow: 0 0 21px rgba(255, 215, 0, 0.35); }
-  48%  { box-shadow: 0 0 22px rgba(255, 215, 0, 0.38); }
-  56%  { box-shadow: 0 0 23px rgba(255, 215, 0, 0.41); }
-  64%  { box-shadow: 0 0 24px rgba(255, 215, 0, 0.44); }
-  72%  { box-shadow: 0 0 23px rgba(255, 215, 0, 0.41); }
-  80%  { box-shadow: 0 0 22px rgba(255, 215, 0, 0.38); }
-  88%  { box-shadow: 0 0 20px rgba(255, 215, 0, 0.32); }
-  96%  { box-shadow: 0 0 18px rgba(255, 215, 0, 0.26); }
-  100% { box-shadow: 0 0 16px rgba(255, 215, 0, 0.2); }
-}
-`;

@@ -1,9 +1,9 @@
-import { Box, Typography, GlobalStyles } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import { GlowGlobalStyles } from '../../layout/Glow';
 import {
   avatarOuterBox,
   getAvatarInnerBox,
   avatarMedia,
-  glowPulseKeyframes,
   rarityLabelStyle
 } from '../../styles/components/AvatarBlock.styles';
 
@@ -21,7 +21,7 @@ function AvatarBlock() {
 
   return (
     <Box sx={avatarOuterBox}>
-      <GlobalStyles styles={glowPulseKeyframes} />
+      <GlowGlobalStyles /> 
       {ok && data ? (
         <Box sx={(theme) => getAvatarInnerBox(data.rarity, theme)}>
 
