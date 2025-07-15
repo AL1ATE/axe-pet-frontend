@@ -1,13 +1,71 @@
-import { commonContainer, glassCardBase } from '../layout';
+import { glassCardBase } from '../layout';
+import { rarityGlowMap, glowPulseAnimationName } from '../../layout/Glow';
 
+/** Внешний контейнер */
 export const avatarOuterBox = {
-  ...commonContainer,
-  px: 2,
-  pt: 2,
   display: 'flex',
   justifyContent: 'center',
+  px: 2,
+  pt: 2,
+  perspective: '1500px',
+  width: '100%',
+  boxSizing: 'border-box',
 };
 
+/** Внутренний флиппер контейнер */
+export const avatarFlipInner = (flipped) => ({
+  width: '100%',
+  maxWidth: { xs: 400, sm: 450, md: 500, lg: 550 },
+  aspectRatio: '1',
+  position: 'relative',
+  transformStyle: 'preserve-3d',
+  transition: 'transform 0.8s',
+  transform: flipped ? 'rotateY(180deg)' : 'none',
+  cursor: 'pointer',
+});
+
+/** Общий каркас карточки */
+export const avatarCardBase = (theme) => ({
+  ...glassCardBase,
+  width: '100%',
+  height: '100%',
+  borderRadius: 8,
+  overflow: 'hidden',
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  backfaceVisibility: 'hidden',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  textAlign: 'center',
+  boxSizing: 'border-box',
+});
+
+/** FRONT */
+export const avatarCardFront = (theme, rarity) => {
+  const glow = rarityGlowMap[rarity] || rarityGlowMap.common;
+
+  return {
+    ...avatarCardBase(theme),
+    boxShadow: `0 0 24px ${glow}`,
+    border: `2px solid ${glow}`,
+    backgroundColor: 'rgba(20,20,30,0.85)',
+    ...(rarity === 'legendary' && {
+      animation: `${glowPulseAnimationName} 5s infinite ease-in-out`,
+    }),
+  };
+};
+
+/** BACK */
+export const avatarCardBack = (theme) => ({
+  ...avatarCardBase(theme),
+  transform: 'rotateY(180deg)',
+  backgroundColor: 'rgba(20,20,30,0.85)',
+});
+
+/** Медиа */
 export const avatarMedia = {
   width: '100%',
   height: '100%',
@@ -16,50 +74,7 @@ export const avatarMedia = {
   borderRadius: 'inherit',
 };
 
-/**
- * Карта цветов свечения по редкости
- */
-export const rarityGlowMap = {
-  common: 'rgba(255,255,255,0.08)',
-  rare: 'rgba(0,150,255,0.4)',
-  epic: 'rgba(155, 89, 182, 0.5)',
-  legendary: 'rgba(255, 215, 0, 0.6)',
-};
-
-/**
- * Динамический стиль контейнера для media
- */
-export const getAvatarInnerBox = (rarity, theme) => {
-  const glow = rarityGlowMap[rarity] || rarityGlowMap.common;
-
-  return {
-    width: '100%',
-    maxWidth: {
-      xs: 400,
-      sm: 450,
-      md: 500,
-      lg: 550,
-    },
-    aspectRatio: '1',
-    borderRadius: 8,
-    overflow: 'hidden',
-    ...glassCardBase,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-    boxShadow: `0 0 24px ${glow}`,
-    border: `2px solid ${glow}`,
-    transition: 'all 0.3s ease',
-    ...(rarity === 'legendary' && {
-      animation: 'glowPulse 3s infinite ease-in-out',
-    }),
-  };
-};
-
-/**
- * Стиль бейджа с надписью редкости
- */
+/** Лейбл редкости */
 export const rarityLabelStyle = (theme, rarity) => ({
   position: 'absolute',
   bottom: 8,
@@ -81,22 +96,3 @@ export const rarityLabelStyle = (theme, rarity) => ({
   letterSpacing: 1,
   textAlign: 'center',
 });
-
-export const glowPulseKeyframes = `
-@keyframes glowPulse {
-  0%   { box-shadow: 0 0 16px rgba(255, 215, 0, 0.2); }
-  8%   { box-shadow: 0 0 17px rgba(255, 215, 0, 0.23); }
-  16%  { box-shadow: 0 0 18px rgba(255, 215, 0, 0.26); }
-  24%  { box-shadow: 0 0 19px rgba(255, 215, 0, 0.29); }
-  32%  { box-shadow: 0 0 20px rgba(255, 215, 0, 0.32); }
-  40%  { box-shadow: 0 0 21px rgba(255, 215, 0, 0.35); }
-  48%  { box-shadow: 0 0 22px rgba(255, 215, 0, 0.38); }
-  56%  { box-shadow: 0 0 23px rgba(255, 215, 0, 0.41); }
-  64%  { box-shadow: 0 0 24px rgba(255, 215, 0, 0.44); }
-  72%  { box-shadow: 0 0 23px rgba(255, 215, 0, 0.41); }
-  80%  { box-shadow: 0 0 22px rgba(255, 215, 0, 0.38); }
-  88%  { box-shadow: 0 0 20px rgba(255, 215, 0, 0.32); }
-  96%  { box-shadow: 0 0 18px rgba(255, 215, 0, 0.26); }
-  100% { box-shadow: 0 0 16px rgba(255, 215, 0, 0.2); }
-}
-`;

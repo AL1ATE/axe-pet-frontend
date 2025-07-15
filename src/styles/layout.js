@@ -52,4 +52,13 @@ export const getGlassDotStyle = (accentColor = 'rgba(155, 89, 182, 0.4)') => ({
   boxSizing: 'border-box',
 });
 
+export const getGlassCardStyle = (background = 'rgba(30,30,40,0.9)') => ({
+  background,
+  backdropFilter: 'blur(12px)',
+  WebkitBackdropFilter: 'blur(12px)',
+  border: '1px solid rgba(255,255,255,0.1)',
+  boxShadow: '0 8px 24px rgba(0,0,0,0.5)',
+});
+
+
 
