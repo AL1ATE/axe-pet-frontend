@@ -1,15 +1,71 @@
-
-import { commonContainer, glassCardBase } from '../layout';
+import { glassCardBase } from '../layout';
 import { rarityGlowMap, glowPulseAnimationName } from '../../layout/Glow';
 
+/** Внешний контейнер */
 export const avatarOuterBox = {
-  ...commonContainer,
-  px: 2,
-  pt: 2,
   display: 'flex',
   justifyContent: 'center',
+  px: 2,
+  pt: 2,
+  perspective: '1500px',
+  width: '100%',
+  boxSizing: 'border-box',
 };
 
+/** Внутренний флиппер контейнер */
+export const avatarFlipInner = (flipped) => ({
+  width: '100%',
+  maxWidth: { xs: 400, sm: 450, md: 500, lg: 550 },
+  aspectRatio: '1',
+  position: 'relative',
+  transformStyle: 'preserve-3d',
+  transition: 'transform 0.8s',
+  transform: flipped ? 'rotateY(180deg)' : 'none',
+  cursor: 'pointer',
+});
+
+/** Общий каркас карточки */
+export const avatarCardBase = (theme) => ({
+  ...glassCardBase,
+  width: '100%',
+  height: '100%',
+  borderRadius: 8,
+  overflow: 'hidden',
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  backfaceVisibility: 'hidden',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  textAlign: 'center',
+  boxSizing: 'border-box',
+});
+
+/** FRONT */
+export const avatarCardFront = (theme, rarity) => {
+  const glow = rarityGlowMap[rarity] || rarityGlowMap.common;
+
+  return {
+    ...avatarCardBase(theme),
+    boxShadow: `0 0 24px ${glow}`,
+    border: `2px solid ${glow}`,
+    backgroundColor: 'rgba(20,20,30,0.85)',
+    ...(rarity === 'legendary' && {
+      animation: `${glowPulseAnimationName} 5s infinite ease-in-out`,
+    }),
+  };
+};
+
+/** BACK */
+export const avatarCardBack = (theme) => ({
+  ...avatarCardBase(theme),
+  transform: 'rotateY(180deg)',
+  backgroundColor: 'rgba(20,20,30,0.85)',
+});
+
+/** Медиа */
 export const avatarMedia = {
   width: '100%',
   height: '100%',
@@ -18,33 +74,7 @@ export const avatarMedia = {
   borderRadius: 'inherit',
 };
 
-export const getAvatarInnerBox = (rarity, theme) => {
-  const glow = rarityGlowMap[rarity] || rarityGlowMap.common;
-
-  return {
-    ...glassCardBase,
-    width: '100%',
-    maxWidth: { xs: 400, sm: 450, md: 500, lg: 550 },
-    aspectRatio: '1',
-    borderRadius: 8,
-    overflow: 'hidden',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-    boxShadow: `0 0 24px ${glow}`,
-    border: `2px solid ${glow}`,
-    transition: 'all 0.3s ease',
-    ...(rarity === 'legendary' && {
-      animation: `${glowPulseAnimationName} 5s infinite ease-in-out`,
-    }),
-  };
-};
-
-
-/**
- * Стиль бейджа с надписью редкости
- */
+/** Лейбл редкости */
 export const rarityLabelStyle = (theme, rarity) => ({
   position: 'absolute',
   bottom: 8,
