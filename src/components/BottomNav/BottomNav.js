@@ -3,7 +3,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import StarIcon from '@mui/icons-material/Star';
-import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   navWrapper,
   navInner,
@@ -13,24 +13,25 @@ import {
 } from '../../styles/components/BottomNav.styles';
 
 const navItems = [
-  { label: 'ГЛАВНАЯ', icon: <HomeIcon />, index: 0 },
-  { label: 'КОЛЛЕКЦИЯ', icon: <CollectionsIcon />, index: 1 },
-  { label: 'ЗАДАНИЯ', icon: <AssignmentIcon />, index: 2 },
-  { label: 'ТОП', icon: <StarIcon />, index: 3 },
+  { label: 'ГЛАВНАЯ', icon: <HomeIcon />, path: '/' },
+  { label: 'КОЛЛЕКЦИЯ', icon: <CollectionsIcon />, path: '/collection' },
+  { label: 'ЗАДАНИЯ', icon: <AssignmentIcon />, path: '/quests' },
+  { label: 'ТОП', icon: <StarIcon />, path: '/top' },
 ];
 
 function BottomNav() {
-  const [selected, setSelected] = useState(0);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <Box sx={navWrapper}>
       <Box sx={(theme) => navInner(theme)}>
         {navItems.map((item) => {
-          const isActive = selected === item.index;
+          const isActive = location.pathname === item.path;
           return (
             <Box
-              key={item.index}
-              onClick={() => setSelected(item.index)}
+              key={item.path}
+              onClick={() => navigate(item.path)}
               sx={(theme) => navItem(theme, isActive)}
             >
               <Box sx={navIcon(isActive)}>{item.icon}</Box>
