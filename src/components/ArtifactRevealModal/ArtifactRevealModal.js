@@ -9,10 +9,12 @@ import {
   videoImageStyle,
   shareButtonStyle,
 } from '../../styles/components/ArtifactRevealModal.styles';
+import { getRarityColor } from '../../utils/artifacts/getRarityColor';
 
 function ArtifactRevealModal({ open, onClose, artifact, skip }) {
   const [step, setStep] = useState(0);
   const theme = useTheme();
+  const rarityColor = getRarityColor(artifact?.rarity);
 
   useEffect(() => {
     if (!open) return;
@@ -42,7 +44,7 @@ function ArtifactRevealModal({ open, onClose, artifact, skip }) {
         <Box onClick={handleSkip} sx={modalBackdropStyle}>
           <Box sx={cardContainerStyle}>
             {step >= 1 && (
-              <Typography variant="h5" sx={rarityTextStyle(artifact?.rarityColor)}>
+              <Typography variant="h5" sx={rarityTextStyle(rarityColor)}>
                 {artifact?.rarity?.toUpperCase()}
               </Typography>
             )}
@@ -54,7 +56,7 @@ function ArtifactRevealModal({ open, onClose, artifact, skip }) {
             )}
 
             {step >= 3 && artifact?.media && (
-              <Box sx={mediaContainerStyle(artifact?.rarityColor, theme)}>
+              <Box sx={mediaContainerStyle(rarityColor, theme)}>
                 {artifact.media.type === 'video' ? (
                   <video
                     src={artifact.media.url}

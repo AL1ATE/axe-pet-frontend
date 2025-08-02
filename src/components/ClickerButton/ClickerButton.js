@@ -6,13 +6,11 @@ import ArtifactRevealModal from '../ArtifactRevealModal/ArtifactRevealModal';
 const mockArtifacts = [
   {
     rarity: 'legendary',
-    rarityColor: 'gold',
     name: 'Wizard Cat',
     media: { type: 'image', url: '/assets/cat-image-1.png' }
   },
   {
     rarity: 'rare',
-    rarityColor: '#0096FF',
     name: 'Knight Cat',
     media: { type: 'video', url: '/assets/cat-video-4.mp4' }
   }
@@ -27,7 +25,6 @@ function ClickerButton() {
     if (clicks <= 0) return;
     setClicks((prev) => prev - 1);
 
-    // Симулируем загрузку с бэкенда
     const random = mockArtifacts[Math.floor(Math.random() * mockArtifacts.length)];
     setCurrentArtifact(random);
     setModalOpen(true);
