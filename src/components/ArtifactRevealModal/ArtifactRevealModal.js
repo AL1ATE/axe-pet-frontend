@@ -7,8 +7,8 @@ import {
   nameTextStyle,
   mediaContainerStyle,
   videoImageStyle,
-  shareButtonStyle,
 } from '../../styles/components/ArtifactRevealModal.styles';
+import { shareButtonStyle } from '../../styles/buttons/GlassButton.styles'
 import { getRarityColor } from '../../utils/artifacts/getRarityColor';
 
 function ArtifactRevealModal({ open, onClose, artifact, skip }) {

@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Background from './layout/Background';
 import AppLayout from './layout/AppLayout/AppLayout';
-import MainScreen from './features/MainScreen/MainScreen';
-import CollectionScreen from './features/CollectionScreen/CollectionScreen';
+import MainScreen from './screens/MainScreen/MainScreen';
+import CollectionScreen from './screens/CollectionScreen/CollectionScreen';
 
 function App() {
   return (

@@ -65,15 +65,3 @@ export const videoImageStyle = (contain = false) => ({
   display: 'block',
   borderRadius: 8,
 });
-
-export const shareButtonStyle = {
-  mt: 3,
-  ...getGlassButtonStyle('rgba(0, 180, 255, 0.4)'),
-  borderRadius: 8,
-  px: 2,
-  py: 1.2,
-  fontSize: 16,
-  fontWeight: 600,
-  color: 'white',
-  textTransform: 'none',
-};
