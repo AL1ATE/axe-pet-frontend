@@ -12,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainScreen />} />
           <Route path="/collection" element={<CollectionScreen />} />
+          <Route path="/wallet" element={<CollectionScreen />} />
         </Routes>
       </AppLayout>
     </BrowserRouter>

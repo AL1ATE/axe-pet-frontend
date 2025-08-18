@@ -1,4 +1,4 @@
-import { commonContainer } from '../layout';
+import { commonContainer, getGlassButtonStyle } from '../layout';
 
 export const headerOuterBox = {
   py: 1.5,
@@ -12,6 +12,7 @@ export const headerInnerBox = {
   justifyContent: 'space-between',
   alignItems: 'center',
   ...commonContainer,
+  pt: { xs: 1, sm: 2 },
 };
 
 export const headerLeftBox = {
@@ -21,15 +22,33 @@ export const headerLeftBox = {
 };
 
 export const avatarStyle = (theme) => ({
-  width: { xs: 28, sm: 32, md: 36 },
-  height: { xs: 28, sm: 32, md: 36 },
-  bgcolor: 'primary.main',
-  fontSize: { xs: 14, sm: 16 },
-  borderRadius: 10,
+    ...getGlassButtonStyle('rgba(200, 100, 255, 0.4)'), // розово-фиолетовый неон
+    width: { xs: 36, sm: 46, md: 52 },
+    height: { xs: 36, sm: 46, md: 52 },
+    borderRadius: theme.shape.borderRadius,
+    color: '#ffffff',
+    transition: 'all 0.3s ease',
+
+    // базовая тень (как у walletBalanceBox)
+    boxShadow: '0 4px 12px rgba(0,0,0,0.35), 0 0 10px rgba(200,120,255,0.25)',
+
+    // hover — как у Happy Axe / Wallet
+    '&:hover': {
+        backgroundColor: 'rgba(200, 100, 255, 0.5)',
+        boxShadow: `0 0 16px rgba(200, 100, 255, 0.5)`,
+    },
+
+    '&:active': {
+        transform: 'scale(0.97)',
+    },
 });
 
+
 export const userNameStyle = {
-  fontSize: { xs: 14, sm: 16, md: 18 },
+    fontWeight: 600,
+    color: '#ffffff',
+    letterSpacing: 0.3,
+    fontSize: { xs: 14, sm: 16, md: 18, lg: 20 },
 };
 
 export const pointsStyle = {
