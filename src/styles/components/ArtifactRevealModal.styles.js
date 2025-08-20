@@ -1,4 +1,4 @@
-import { getGlassCardStyle, getGlassButtonStyle } from '../layout';
+import { getGlassCardStyle } from '../layout';
 
 export const modalBackdropStyle = {
   display: 'flex',

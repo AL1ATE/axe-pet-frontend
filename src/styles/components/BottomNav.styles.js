@@ -19,7 +19,6 @@ export const navInner = (theme) => ({
     justifyContent: 'space-between',
     p: { xs: 0.6, sm: 1, md: 1.5, lg: 2 },
     ...commonContainer,
-    boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
 });
 
 export const navItem = (theme, isSelected, isActive) => ({
@@ -65,3 +64,14 @@ export const navLabel = (isActive) => ({
     fontSize: { xs: 10, sm: 12, md: 14, lg: 16 },
     mt: { xs: 0.1, sm: 0.25 },
 });
+
+export const lockBadge = {
+    position: 'absolute',
+    top: 6,
+    right: 10,
+    width: 14,
+    height: 14,
+    fontSize: 14,
+    color: 'rgba(255,255,255,0.7)',
+    opacity: 0.9,
+};
