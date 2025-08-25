@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Box } from '@mui/material';
-import { clickerButton } from '../../styles/components/ClickerButton.styles';
+import { clickerButton } from '../../styles/buttons/GlassButton.styles';
 import ArtifactRevealModal from '../ArtifactRevealModal/ArtifactRevealModal';
 
 const mockArtifacts = [

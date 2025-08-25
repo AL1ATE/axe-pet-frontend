@@ -46,22 +46,25 @@ export const nameTextStyle = {
   color: 'white',
 };
 
-export const mediaContainerStyle = (rarityColor, theme) => ({
-  flexGrow: 1,
-  mt: 1,
-  width: '100%',
-  borderRadius: 4,
-  overflow: 'hidden',
-  backgroundColor: rarityColor || theme.palette.background.paper,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+export const mediaContainerStyle = (rarityColor?: string) => ({
+    flexGrow: 1,
+    mt: 1,
+    width: '100%',
+    borderRadius: 8,
+    overflow: 'hidden',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    lineHeight: 0,
+    backgroundColor: 'transparent',
+    border: `1px solid ${rarityColor || 'white'}`,
+    boxShadow: `0 0 6px ${rarityColor || 'white'}`,
+    transition: 'box-shadow 0.3s ease, border 0.3s ease',
 });
 
-export const videoImageStyle = (contain = false) => ({
-  width: '100%',
-  height: '100%',
-  objectFit: contain ? 'contain' : 'cover',
-  display: 'block',
-  borderRadius: 8,
+export const mediaContentStyle = () => ({
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    display: 'block',
 });
